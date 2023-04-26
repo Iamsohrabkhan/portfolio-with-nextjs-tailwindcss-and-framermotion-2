@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-transition {
+  transition: height 0.5s ease, width 1s ease 0.5s;
+}
+.custom-gradient {
+  background: linear-gradient(to right, #000 50%, #fff) bottom,
+    linear-gradient(to right, #fff 50%, #000 50%) top;
+}
+.parent > *:nth-child(odd) {
+  margin-left: auto;
+}
+.parent > *:nth-child(even) {
+  margin-left: 0;
+}
+.l {
+  left: cal(10rem + 15vw);
+}
+.invert-img{
+  filter: invert(100%);
+}
