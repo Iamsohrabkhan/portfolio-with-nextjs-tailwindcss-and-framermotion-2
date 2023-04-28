@@ -120,7 +120,7 @@ const ParticleSkill = () => {
   }, []);
 
   const particlesLoaded = useCallback(async (container) => {
-    await console.log(container);
+    // await console.log(container);
   }, []);
 
   return (

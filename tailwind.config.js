@@ -39,6 +39,9 @@ module.exports = {
         // => @media (min-width: 1536px) { ... }
       },
     },
+    fontFamily:{
+  Mania: "'Metal Mania', cursive"
+    },
   },
   plugins: [
     require('@tailwindcss/typography'),

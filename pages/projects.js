@@ -1,77 +1,107 @@
 /* eslint-disable @next/next/no-img-element */
-import  { useRef,useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Icons from "@/components/helpers/Icons";
 import PowerButton from "@/components/helpers/PowerButton";
 import Logo from "@/components/helpers/logo";
-import { FaGithub } from "react-icons/fa";
+import {
+  Card,
+  ProYang,
+  Projectheading,
+} from "@/components/pages/project-elements";
+import ParticleSkill from "@/components/helpers/ParticleSkill";
+import { motion } from "framer-motion";
+import Head from "next/head";
 
+const container = {
+  hidden: {
+    x: "-100vh",
+    // opacity:0,
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.4,
+    },
+  },
+  exit: {
+    x: "-100vh",
+    // opacity:0
+  },
+};
 
 const Projects = () => {
+  // const ref = useRef(null);
 
-  const ref=useRef(null)
-  const yangRef=useRef(null)
+  // useEffect(() => {
+  //   let element = ref.current;
+  //   const rotate = () => {
+  //     element.style.transform = `translateX(${scrollY})px`;
+  //     yangRef.current.style.transform = "rotate(" + -window.scrollY + "deg)";
+  //   };
+  //   window.addEventListener("scroll", rotate);
 
-  useEffect(() => {
-    let element=ref.current;
-    const rotate=()=>{
-      element.style.transform= `translateX(${scrollY})px`
-      yangRef.current.style.transform = 'rotate(' + -window.scrollY + 'deg)'
-    }
-    window.addEventListener('scroll',rotate)
+  //   return () => {
+  //     window.removeEventListener("scroll", rotate);
+  //   };
+  // }, []);
 
-    
-    return () => {
-      window.removeEventListener('scroll',rotate)
-    }
-  }, [])
-  
-
-  const Card = () => {
-    return (
-      
-      <div
-      className="card h-[40vh] w-64 bg-white  px-4 py-2 mr flex flex-col  border-[1px] transition-all duration-200 ease-linear hover:bg-black border-white cursor-pointer group mx-auto rounded-tr-2xl rounded-br-2xl"
-    >
-      <h2 className="text-xl font-bold group-hover:text-white">Agency Landing Page</h2>
-      <p className="text-sm my-3 group-hover:text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit.  </p>
-   
-      <div className="bg-black w-full h-[1px] group-hover:text-white"/>
-      <ul className="tags flex space-x-4 flex-wrap group-hover:text-white">
-        <li>#react</li>
-        <li>#react</li>
-        <li>#react</li>
-      </ul>
-      <div className="flex justify-between max-w-[70%] mt-3 group-hover:text-white">
-   <div className="btn bg-black text-white px-6 py-1 group-hover:text-black group-hover:bg-white rounded-bl-[50px]">Visit</div>
-   <FaGithub className="text-2xl self-center"/>
-      </div>
-    </div>
-    )
-   }
-  
   return (
     <>
+      <Head>
+        <title>Sohrab Khan || Projects</title>
+      </Head>
       <Logo className="text-white" />
       <Icons className="text-white" />
       <PowerButton />
-       <div className="relative h-screen w-screen bg-black overflow-hidden"> 
-        <div ref={ref} className="fixed top-48 l flex h-[40vh]  bg-pink- ml-32 space-x-8"> 
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-          <Card/>
-        </div>
-      </div>
-      <div className="fixed block w-20 h-20 z-10 bottom-4 right-4 text-white">
-      <img
-            className="h-14 w-14 text-white invert-img" 
-            src="/assets/svg/yin-yang-solid.svg"
-            alt="yin-yang"
-            ref={yangRef}
+      <Projectheading />
+      <motion.div
+        className="relative -z-50 h-screen w-screen overflow-hidden bg-black"
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+      >
+        <ParticleSkill />
+
+        <div
+          // ref={ref}
+          className="l bg-pink- fixed top-48 ml-32  flex h-[40vh] snap-x space-x-8"
+        >
+          <Card
+            title="Self Care"
+            description="WeCare is a health and wealthness that connects users with health care professionals, informative resorces. Desogned by Mext js, Sanity and Framer Motion. "
+            tag1="nextjs"
+            tag2="Framer-motion"
+            sitelink="https://healthandwealthblogs.netlify.app/"
+            github="https://github.com"
+            delay="0.01"
+          />        
+       
+         
+          <Card
+            title="Portofolio"
+            description="This website build with next js which showcases my previous projects, skills and experiance. it offers visually apealing and informative overview of my work. "
+            tag1="nextjs"
+            tag2="Tailwind css"
+            sitelink="https://portfolio-iamsohrabkhan.vercel.app"
+            github="https://github.com/Iamsohrabkhan/portfolio-with-nextjs"
+            delay="0.5"
           />
-      </div>
+         
+          <Card
+            title="Word Counter"
+            description="My word counter websites, built with react, allow users to quickly and easuky count tge number of words  in your text. This website is design being fast and reliable."
+            tag1="react"
+            tag2="Bootstrap"
+            sitelink="https://portfolio-iamsohrabkhan.vercel.app"
+            github="https://github.com"
+            delay="0.7"
+          />
+         
+        </div>
+      </motion.div>
+      <ProYang />
     </>
   );
 };

@@ -5,22 +5,38 @@ import Header from "@/components/pages/header";
 import { HeroBackground } from "@/components/pages/hero";
 import Intro from "@/components/pages/intro";
 import { UseApp } from "@/context/Appcontext";
+import { motion } from "framer-motion";
+import Head from "next/head";
 
 export default function Home() {
-  const { click,setClick } = UseApp();
-   setInterval(() => {
-    setClick(true)
-    
-  }, 1000);
+  const { click } = UseApp();
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration:0.4
+      },
+    },
+  }
+
+
   return (
     <>
-        
-    <main className="overflow-x-auto">
-    <Header/>
-       <YinYang/>
-       <HeroBackground/>      
-       { click && <Intro/>}
-    </main>
+    <Head>
+    <title>Sohrab Khan || Portfolio</title>
+    </Head>
+
+      <motion.main className="overflow-hidden"
+      variants={container}
+      initial="hidden"
+      animate="visible"
+      >
+        <Header />
+        <YinYang />
+        <HeroBackground />
+        {click && <Intro />}
+      </motion.main>
     </>
   );
 }

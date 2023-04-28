@@ -4,14 +4,14 @@ import Articles, {
   Background,
   Heading,
 } from "@/components/pages/blogs-elements";
-import { UseApp } from "@/context/Appcontext";
-import blogs from "@/components/data/blogs";
-
-const Blogs = () => {
-  const { setClick } = UseApp();
-  setClick(false);
+import Head from "next/head";
+const Blogs = ({blogs}) => {
+ 
   return (
     <>
+    <Head>
+    <title>Sohrab Khan || Blogs</title>
+    </Head>
       <PowerButton />
       <div className="relative inset-0 h-screen w-screen">
         <Heading />
@@ -21,5 +21,14 @@ const Blogs = () => {
     </>
   );
 };
+export async function getStaticProps() {
+  const res = await fetch('http://localhost:3500/portfolioblogs')
+  const blogs = await res.json()
+  return {
+    props: {
+      blogs,
+    },
+  }
+}
 
 export default Blogs;
