@@ -2,7 +2,7 @@ import { AiFillGithub, AiOutlineInstagram } from "react-icons/ai";
 import { TfiTwitterAlt } from "react-icons/tfi";
 import { ImFacebook } from "react-icons/im";
 import { motion } from "framer-motion";
-import { UseApp } from "@/context/Appcontext";
+import { useEffect, useState } from "react";
 
 const container = {
   hidden: {},
@@ -27,6 +27,16 @@ const item = {
 
 };
 const Icons = ({className}) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize(); // call handleResize initially to set the correct state
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <motion.div className="icons translate--1/2 fixed bottom-1 left-3 md:left-11  z-50 translate-x-1/2 ">
       <motion.ul
@@ -73,9 +83,9 @@ const Icons = ({className}) => {
             className==="text-white" ? "bg-white": "bg-black"
           }`}
           initial={{height:0}}
-          animate={{height:"6rem",
+          animate={{height: isMobile ? "3rem" :"6rem",
         transition:{
-          duration:0.2
+          duration:0.7
         }
         }}
         />

@@ -19,7 +19,7 @@ module.exports = {
         'spin-slow': 'spin 1.3s linear infinite',
       },
       backgroundImage:{
-        "blog":"url('/assets/Images/patrick-tomasso-Oaqk7qqNh_c-unsplash.jpg')"
+        "blog":"url('/assets/Images/blogs.jpg')"
       },
       screens: {
         'sm': '640px',

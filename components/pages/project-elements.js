@@ -1,91 +1,195 @@
 /* eslint-disable @next/next/no-img-element */
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { useRef } from "react";
-import { FaGithub } from "react-icons/fa";
 
-export const Card = ({
-  title,
-  description,
-  tag1,
-  tag2,
-  tag3,
-  sitelink,
-  github,
-  delay,
-}) => {
+const container = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.1,
+      staggerChildren: 0.4,
+    },
+  },
+};
+
+const item = {
+  hidden: { x: 20, opacity: 0, scale: 0 },
+  visible: {
+    delay:0.3,
+    x: 0,
+    scale: 1,
+    opacity: 1,
+  },
+};
+
+export const Card = () => {
+  return (
+    <>
+    <div className="h-16 md:h-32" />
+    <div className="mx-auto max-w-screen-lg px-3">
+      <motion.div
+        className="flex flex-col gap-6"
+        variants={container}
+        initial="hidden"
+        animate="visible"
+      >
+
+        <motion.div
+          className="flex flex-col items-center gap-x-8 rounded-md bg-slate-800 p-3 md:flex-row"
+          variants={item}
+        >
+          <div className="shrink-0">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://healthandwealthblogs.netlify.app/"
+            >
+              <img
+                className="h-36 w-36 hover:translate-y-1"
+                src="/assets/Images/project-fire.png"
+                alt="Project Web Design"
+                loading="lazy"
+              />
+            </a>
+          </div>
+          <div>
+            <div className="flex flex-col items-center gap-y-2 md:flex-row">
+              <a className="hover:text-cyan-400" href="/demo/astro-boilerplate">
+                <div className="text-xl font-semibold">Self Care</div>
+              </a>
+              <div className="ml-3 flex gap-2">
+                <div className="rounded-md bg-fuchsia-400 px-2 py-1 text-xs font-semibold text-fuchsia-900">
+                  Nextjs
+                </div>
+                <div className="rounded-md bg-lime-400 px-2 py-1 text-xs font-semibold text-lime-900">
+                  Framer-motion
+                </div>
+                <div className="rounded-md bg-sky-400 px-2 py-1 text-xs font-semibold text-sky-900">
+                  Tailwind.css
+                </div>
+              </div>
+            </div>
+            <p className="mt-3 text-sm text-gray-400">
+              WeCare is a health and wealthness that connects users with health
+              care professionals, informative resorces. Desogned by Mext js,
+              Sanity and Framer Motion.
+            </p>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="flex flex-col items-center gap-x-8 rounded-md bg-slate-800 p-3 md:flex-row"
+          variants={item}
+        >
+          <div className="shrink-0">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://portfolio-iamsohrabkhan.vercel.app"
+            >
+              <img
+                className="h-36 w-36 hover:translate-y-1"
+                src="/assets/Images/project-fire.png"
+                alt="Project Web Design"
+                loading="lazy"
+              />
+            </a>
+          </div>
+          <div>
+            <div className="flex flex-col items-center gap-y-2 md:flex-row">
+              <a className="hover:text-cyan-400" href="/demo/astro-boilerplate">
+                <div className="text-xl font-semibold">Portofolio</div>
+              </a>
+              <div className="ml-3 flex gap-2">
+                <div className="rounded-md bg-fuchsia-400 px-2 py-1 text-xs font-semibold text-fuchsia-900">
+                  Nextjs
+                </div>
+                <div className="rounded-md bg-sky-400 px-2 py-1 text-xs font-semibold text-sky-900">
+                  Tailwind.css
+                </div>
+              </div>
+            </div>
+            <p className="mt-3 text-sm text-gray-400">
+              This site was design initially. This shows my skills while
+              learning next.js and tailwind css.
+            </p>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="flex flex-col items-center gap-x-8 rounded-md bg-slate-800 p-3 md:flex-row"
+          variants={item}
+        >
+          <div className="shrink-0">
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://github.com/iamsohrabkhan/wordcounter"
+            >
+              <img
+                className="h-36 w-36 hover:translate-y-1"
+                src="/assets/Images/project-2.png"
+                alt="Project Web Design"
+                loading="lazy"
+              />
+            </a>
+          </div>
+          <div>
+            <div className="flex flex-col items-center gap-y-2 md:flex-row">
+              <a className="hover:text-cyan-400" href="/demo/astro-boilerplate">
+                <div className="text-xl font-semibold">Word Counter</div>
+              </a>
+              <div className="ml-3 flex gap-2">
+                <div className="rounded-md bg-fuchsia-400 px-2 py-1 text-xs font-semibold text-fuchsia-900">
+                  React
+                </div>
+                <div className="rounded-md bg-sky-400 px-2 py-1 text-xs font-semibold text-sky-900">
+                  Bootstrap
+                </div>
+              </div>
+            </div>
+            <p className="mt-3 text-sm text-gray-400">
+              My word counter websites, built with react, allow users to quickly
+              and easuky count tge number of words in your text. This website is
+              design being fast and reliable.
+            </p>
+          </div>
+        </motion.div>
+      </motion.div>
+    </div>
+    </>
+
+  );
+};
+
+export const Spaceman = () => {
   return (
     <motion.div
-      className="card mr group mx-auto  flex h-[44vh] w-64 cursor-pointer flex-col  rounded-tr-2xl rounded-br-2xl border-[1px] border-white bg-white px-4 py-2 transition-all duration-200 ease-linear hover:bg-black"
-      initial={{ scale: 0 }}
-      animate={{ scale: 1 }}
-      transition={{ duration: 0.4, delay: delay }}
+      className="lg:h-50 absolute h-32 w-32 lg:w-52"
+      initial={{
+        top: "50rem",
+        right: "-50rem",
+      }}
+      animate={{
+        top: 0,
+        right: "9rem",
+        transition: {
+          type: "spring",
+          delay: 0.8,
+          duration: 3,
+        },
+      }}
     >
-      <h2 className="text-xl font-bold group-hover:text-white">{title}</h2>
-      <p className="my-3 text-sm group-hover:text-white">{description} </p>
-
-      <div className="h-[1px] w-full bg-black group-hover:text-white" />
-      <ul className="tags flex flex-wrap space-x-4 group-hover:text-white">
-        <li>#{tag1}</li>
-        <li>#{tag2}</li>
-        <li>{tag3 && tag3}</li>
-      </ul>
-      <div className="mt-3 flex max-w-[70%] justify-between group-hover:text-white">
-        <Link
-          href={sitelink}
-          target="_blank"
-          className="btn rounded-bl-[50px] bg-black px-6 py-1 text-white group-hover:bg-white group-hover:text-black cursor-pointer"
-        >
-          Visit
-        </Link>
-        <Link className="cursor-pointer" href={github} target="_blank">
-          <FaGithub className="self-center text-2xl" />
-        </Link>
-      </div>
+      <img src="/assets/Images/spaceman.png" alt="" />
     </motion.div>
   );
 };
-
-export const ProYang = () => {
-  const yangRef = useRef(null);
-  return (
-    <div className="fixed bottom-4 right-4 z-10 block h-20 w-20 text-white">
-      <img
-        className="invert-img h-14 w-14 text-white"
-        src="/assets/svg/yin-yang-solid.svg"
-        alt="yin-yang"
-        ref={yangRef}
-      />
-    </div>
-  );
-};
-
-export const Spaceman=()=>{
-  return <motion.div className="absolute w-32 h-32 lg:w-52 lg:h-50"
-  initial={{
-    top:"50rem",
-    right:"-50rem"
-  }}
-  animate={{
-    top:0,
-    right:"9rem",
-    transition:{
-      type:"spring",
-      delay:0.8,
-      duration:3
-    }
-  }}
-  >
-        <img src="/assets/Images/spaceman.png" alt="" />
-    
-    </motion.div>
-}
 
 export const Projectheading = () => {
   return (
     <h2
-      className="fixed top-[10%] left-14 -z-40 text-8xl font-black
-      uppercase tracking-wider text-stone-300 opacity-40 drop-shadow-2xl selection:bg-transparent font-Mania"
+      className="fixed top-[10%] left-14 -z-30 font-Mania text-8xl
+      font-black uppercase tracking-wider text-white opacity-40 drop-shadow-2xl selection:bg-transparent"
     >
       Projects
     </h2>

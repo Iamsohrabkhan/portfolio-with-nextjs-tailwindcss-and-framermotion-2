@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Breadcrumb from "../helpers/breadcrumb";
 import { motion } from "framer-motion";
+import Head from "next/head";
 
 export const Heading = () => {
   return (
@@ -17,7 +18,7 @@ export const Heading = () => {
 export const Background = () => {
   return (
     <>
-      <div className="fixed inset-0 -z-30 h-full w-full bg-gradient-to-r from-white/70 to-white/40 bg-fixed" />
+      <div className="fixed inset-0 -z-30 h-full w-full bg-gradient-to-r from-rose-200/50 to-teal-200/50 bg-fixed" />
       <div className="fixed inset-0 -z-50 h-full w-full bg-blog bg-cover bg-fixed bg-center bg-no-repeat" />
     </>
   );
@@ -65,20 +66,6 @@ const Articles = ({ blogs }) => {
                   className="h-44 w-[30rem] bg-contain bg-center"
                   src={img}
                   alt={title}
-                  // loading="lazy"
-                  // layoutId={slug}
-                  // initial={{
-                  //   opacity:0
-                  // }}
-                  // animate={{
-                  //   opacity:1,
-                  //   transition:{
-                  //     duration:0.4
-                  //   }
-                  // }}
-                  // exit={{
-                  //   opacity:0
-                  // }}
                 />
                 <h2 className="mt-2 text-start text-base font-bold">{title}</h2>
                 <p className="text-sm text-black group-hover:!text-white">
@@ -87,7 +74,7 @@ const Articles = ({ blogs }) => {
                 <div className="my-2 h-[1px] w-full bg-gray-500 " />
                 <div className="tags text-start">
                   <ul className="flex gap-2">
-                    {tags.map((curr) => {
+                    {tags.slice(0,2).map((curr) => {
                       return (
                         <li key={curr} className="text-gray-600">
                           #{curr}
@@ -108,42 +95,33 @@ const Articles = ({ blogs }) => {
 
 export const SingleBlog = ({ blog }) => {
   const { back } = useRouter();
-  const { img, title, date, description,slug } = blog;
+  const { img, title, date, description } = blog;
   return (
     <>
-      <Breadcrumb first={"Blog"} second={title} />
-
-      <div className="container !mx-auto mt-20 flex h-full w-full  flex-col items-center">
+    <Head>
+    <title>Sohrab Khan || {title}</title>
+    </Head>
+      <div className="flex flex-col items-center px-5 py-8 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="flex flex-col w-full max-w-3xl mx-auto prose prose-headings:mt-2 prose-headings:mb-4 prose-stone text-left ">
+      <div class="w-full mx-auto">
         <img
-        // layoutId={slug}
           className="bottom-2 inline-block h-60 w-[30rem] rounded-2xl md:h-80 md:w-[40rem]"
           src={img}
           alt={title}
-          // loading="lazy"
-          // initial={{
-          //   opacity:0
-          // }}
-          // animate={{
-          //   opacity:1,
-          //   transition:{
-          //     duration:0.4
-          //   }
-          // }}
-          // exit={{
-          //   opacity:0
-          // }}
         />
-        <h2 className="my-5 text-3xl font-bold md:text-5xl">{title}</h2>
-        <p className="text-base text-paragraph ">{description}</p>
-        <p className="mt-2 self-end">{date}</p>
+        <h2>{title}</h2>
+        <p>{description}</p>
+        <p className="text-end font-bold">{date}</p>
         <p
           onClick={back}
-          className="mb- cursor-pointer self-end text-xl font-semibold underline"
+          className="mb- cursor-pointer self-end text-xl font-bold text-end underline"
         >
           Back & Read more Blogs
         </p>
 
         <div className="my-2 h-[1px] w-full bg-black/40 " />
+      </div>
+      </div>
       </div>
     </>
   );

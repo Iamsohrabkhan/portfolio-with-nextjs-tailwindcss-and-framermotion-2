@@ -7,6 +7,7 @@ import { Background, Heading, SingleBlog } from '@/components/pages/blogs-elemen
 const Blog = ({blog}) => {
   return (
     <>
+    
      <PowerButton />
       <div className="relative inset-0 h-screen w-screen">
         <Heading />
